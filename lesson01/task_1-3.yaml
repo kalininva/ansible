@@ -1,0 +1,34 @@
+---
+- name: task_1-3
+  hosts: node1.example.com
+
+  tasks:
+  - name: add net.ifnames=0 to grub
+    lineinfile:
+     path: /etc/default/grub
+     state: present
+     regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*net\.ifnames).*)(\".*)'
+     line: '\1 net.ifnames=0\2'
+     backup: yes
+     backrefs: yes
+    notify: start_grub2-mkconfig
+
+  - name: add biosdevname=0 to grub
+    lineinfile:
+     path: /etc/default/grub
+     state: present
+     regexp: '^(GRUB_CMDLINE_LINUX=\"(?!.*biosdevname).*)(\".*)'
+     line: '\1 biosdevname=0\2'
+     backup: yes
+     backrefs: yes
+    notify: start_grub2-mkconfig
+
+  handlers:
+    - name: start_grub2-mkconfig
+      command: grub2-mkconfig
+      register: output_log
+      notify: debug
+    - name: debug
+      debug: var=output_log.stdout_lines
+
+...

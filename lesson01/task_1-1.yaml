@@ -1,0 +1,40 @@
+---
+- name: task_1-1
+  hosts: node1.example.com
+
+  tasks:
+  - name: install apache package
+    yum:
+     name: httpd
+     state: present
+  - name: run apache package
+    service:
+     name: httpd
+     state: started
+     enabled: yes
+
+  - name: create index.html
+    copy:
+     dest: /var/www/html/index.html
+     content: "Welcome to my web server"
+
+  - name: run firewalld
+    service:
+     service: firewalld
+     state: started
+     enabled: yes
+  - name: open http access
+    firewalld:
+     service: http
+     permanent: true
+     state: enabled
+    notify:
+    - restart firewalld
+
+
+  handlers:
+    - name: restart firewalld
+      service:
+       name: firewalld
+       state: restarted
+...
