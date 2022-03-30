@@ -1,0 +1,18 @@
+---
+- name: create users
+  hosts: node1.example.com:node2.example.com
+  vars_files:
+    - ./vars/users.yaml
+    - ./vars/users_pass.yaml
+  tasks:
+  - name: create users
+    user:
+      name: '{{item.name}}'
+      state: present
+      shell: '{{item.shell}}'
+      create_home: yes
+      comment: '{{item.comment}}'
+      password: '{{item.password | string | password_hash("sha512")}}'
+      update_password: on_create
+    loop: '{{users}}'
+...

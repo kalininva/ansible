@@ -1,0 +1,16 @@
+users:
+- name: bob
+  comment: bob@example.com
+  shell: /bin/bash
+  password: "{{vault_bob_password}}"
+    
+- name: alice
+  comment: alice@example.com
+  shell: /bin/bash
+  password: "{{vault_alice_password}}"
+
+- name: carol
+  comment: carol@example.com
+  shell: /bin/bash
+  password: "{{vault_carol_password}}"
+
