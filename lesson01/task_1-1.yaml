@@ -20,7 +20,7 @@
 
   - name: run firewalld
     service:
-     service: firewalld
+     name: firewalld
      state: started
      enabled: yes
   - name: open http access
