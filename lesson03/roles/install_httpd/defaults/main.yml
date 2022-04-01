@@ -1,0 +1,4 @@
+---
+# defaults file for install_https
+html_title: Test page title
+html_main_text: Welcome to my web server

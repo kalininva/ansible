@@ -1,0 +1,25 @@
+---
+
+#check/run firewalld
+- name: check/run firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes
+
+#open ports for ftp
+- name: open http access
+  firewalld:
+    service: ftp
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewalld
+
+- name: open http access
+  firewalld:
+    port: 40000-40050/tcp
+    permanent: true
+    state: enabled
+  notify:
+    - restart firewalld

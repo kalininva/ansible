@@ -1,0 +1,17 @@
+---
+#selinux
+- name: install python3-libsemanage
+  yum:
+    name: python3-libsemanage
+    state: present
+
+- name: install python-libselinux
+  yum:
+    name: python3-libselinux
+    state: present
+
+- name: Set ftpd_anon_write flag
+  ansible.posix.seboolean:
+    name: ftpd_anon_write
+    state: '{{selinux_ftpd_anon_write}}'
+    persistent: yes

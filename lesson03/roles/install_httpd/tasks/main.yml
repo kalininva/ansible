@@ -1,0 +1,4 @@
+---
+- name: run apache for CentOS
+  import_tasks: 'install_apache_centos.yaml'
+  when: ansible_os_family == 'RedHat'

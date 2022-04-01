@@ -1,0 +1,15 @@
+ftpd_banner=Welcome to FTP Server
+anon_upload_enable=YES
+anon_umask=022
+write_enable=YES
+anonymous_enable=YES
+no_anon_password=YES
+anon_root={{vsftpd_anon_dir_read}}
+local_enable=NO
+listen=YES
+pasv_min_port={{vsftpd_pasv_min_port}}
+pasv_max_port={{vsftpd_pasv_max_port}}
+xferlog_std_format=YES
+xferlog_enable=YES
+xferlog_file=/var/log/xferlog
+nopriv_user=ftp

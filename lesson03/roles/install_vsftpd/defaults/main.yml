@@ -1,0 +1,9 @@
+---
+# defaults file for install_vsftpd
+vsftpd_anon_dir_read: /var/ftp/pub
+vsftpd_anon_dir_write: /var/ftp/pub/upload
+vsftpd_pasv_min_port: 40000
+vsftpd_pasv_max_port: 40050
+selinux_ftpd_anon_write: 'on'
+vsftpd_setype_for_read: public_content_t
+vsftpd_setype_for_write: public_content_rw_t
