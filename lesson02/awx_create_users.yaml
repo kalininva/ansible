@@ -1,5 +1,6 @@
 ---
 - name: create users
+  hosts: node1.example.com:node2.example.com
   vars_files:
     - ./vars/users.yaml
     - ./vars/users_pass.yaml
